@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: node-app
+    ports:
+      - "3000:3000"  # пробрасываем порт приложения
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - .:/app  # монтируем локальную папку для разработки
+      - /app/node_modules  # сохраняем node_modules внутри контейнера
+    restart: unless-stopped
